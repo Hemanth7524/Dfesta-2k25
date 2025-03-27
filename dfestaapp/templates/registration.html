@@ -28,6 +28,7 @@
 header {
             position: fixed;
             width: 100%;
+            min-width: 300px;
             padding: 1rem 2rem;
             background: linear-gradient(to right, rgb(74, 143, 247), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.4));
             backdrop-filter: blur(10px);
@@ -90,8 +91,7 @@ header {
             cursor: pointer;
         }
 .hero-section{
-    /* background-image:url("/static/images/Sravani.jpg"); */
-    background-image: url("/static/images/Sravani.jpg");
+    background-image: url("{% static 'images/Sravani.jpg' %}"); 
     background-position: center;
     background-attachment: fixed;
     padding: 100px 5%;
@@ -119,7 +119,7 @@ h1 {
 
 .event-category {
     margin-bottom: 40px;
-    background-image:url("/static/images/bg1Frosted.jpeg");   
+    background-image: url('static/images/bg1Frosted.jpeg'); 
     background-repeat: no-repeat;
     background-size: cover;
     padding: 10px 50px 30px;
@@ -147,7 +147,7 @@ h2 {
 .event-card{
     display: flex;
     flex-direction: column;
-    background-image:url("/static/images/card-img.jpeg"); 
+    background-image: url('../images/card-img.jpeg'); 
     background-color: rgba(0,0,0,0.3);
     background-blend-mode: overlay;
     background-position: center;
@@ -279,7 +279,9 @@ html, body {
                 display: block;
                 order: 3;
             }
-
+            header{
+                width: 100%;
+            }
             nav ul {
                 display: none;
                 flex-direction: column;
@@ -316,17 +318,6 @@ html, body {
 a{
     text-decoration: none;
     color: black;
-}
-@keyframes scaleUp {
-	from{
-		scale: 0.9;
-	}
-	to{
-		scale: 1;
-	}
-}
-*{
-    animation: scaleUp 1s forwards;
 }
     </style>
 
