@@ -1,0 +1,648 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Fest - About Us</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+    
+        :root {
+            --primary: #ff3366;
+            --secondary: #7c3aed;
+            --accent: #00d4ff;
+            --dark: #1a1a2e;
+            --light: #ffffff;
+        }
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 20px 4rem;
+            background: linear-gradient(to right, rgb(74, 143, 247), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.4));
+            backdrop-filter: blur(10px);
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            font-weight: bolder;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+            animation: slideDown 1.2s ease-out forwards;
+        }
+    
+        header img {
+            height: 80px;
+        }
+    
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+    
+        nav li {
+            cursor: pointer;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+    
+        nav li:hover {
+            color: var(--primary);
+        }
+    
+        nav li::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+    
+        nav li:hover::after {
+            width: 100%;
+        }
+    
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("/static/images/bg3.jpg");
+            background-size: cover;
+            color: #333;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+    
+        /* Hamburger Menu Styles */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: black;
+        }
+    
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 2rem;
+                flex-wrap: wrap;
+                position: relative;
+            }
+    
+            header img {
+                height: 50px; /* Reduced size for small screens */
+            }
+    
+            .hamburger {
+                display: block;
+                order: 2; /* Position it between logos */
+            }
+    
+            nav {
+                order: 3; /* Move nav below the header content */
+                width: 100%;
+                display: none; /* Hidden by default */
+            }
+    
+            nav.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+    
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+    
+            nav li {
+                padding: 1rem 0;
+            }
+    
+            .content {
+                flex-direction: column;
+                width: 90%;
+            }
+    
+            .content img {
+                width: 200px;
+                height: 200px;
+            }
+    
+            .faculty-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                width: 90%;
+            }
+    
+            .gallery {
+                flex-direction: column;
+                align-items: center;
+            }
+    
+            .gallery-item img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    
+        .about {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeInUp 1s ease-in-out forwards;
+            background: greenyellow;
+            color: black;
+        }
+    
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            animation: fadeInUp 1s ease-in-out forwards;
+            background: linear-gradient(90deg, orange, yellow);
+        }
+    
+        .content img {
+            width: 300px;
+            height: 250px;
+            border-radius: 100%;
+            border: 2px solid brown;
+            transition: transform 0.5s ease-in-out;
+        }
+    
+        .content img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+    
+        .text {
+            font-size: 1rem;
+            line-height: 30px;
+        }
+    
+        .footer {
+            background-color: #2a2a2a;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+    
+        .head { text-align: center; }
+    
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+    
+        .faculty-member {
+            padding: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            animation: slideUp 0.5s ease-in-out forwards;
+            background-image: url("/static/images/bg3.jpg");
+        }
+    
+        .faculty-member img {
+            width: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
+    
+        .faculty-member img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+    
+        .faculty-member:hover {
+            transform: scale(1.05);
+        }
+    
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    
+        .photo h3 { text-align: center; padding-top: 4px; }
+    
+        .textname { color: antiquewhite; }
+    
+        .name { color: #1bc0e0; }
+    
+        .ggg { text-align: center; background-image: url("/static/images/bg3.jpg"); }
+    
+        h1 { text-align: center; }
+    
+        h2 { text-align: left; color: blueviolet; }
+    
+        .gallery {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+    
+        .gallery-item { animation: fadeIn 0.4s ease forwards; }
+    
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+    
+        .gallery-item img {
+            width: 300px;
+            height: 300px;
+            margin: 10px;
+            border: 10px solid rgb(29, 205, 79);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+    
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+    
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    
+        .fact { color: firebrick; }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <img src="{% static 'images/mitslogo.jpg' %}" alt="">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'about' %}"> About</a></li>
+                <li><a href="{% url 'events' %}"> Events</a></li>
+                <li><a href="{% url 'registrations' %}"> Registrations</a></li>
+                <li><a href="{% url 'info' %}"> info</a></li>
+            </ul>
+        </nav>
+        <img src="{% static 'images/dslogo.jpg' %}" alt="">
+    </header>
+
+    <section class="about">
+        <p>Welcome to the Data Science Department Fest! We are passionate about data, innovation, and creativity!</p>
+    </section>
+
+    <section class="content">
+        <div class="photo">
+            <img src="{% static 'images/Kusuma .jpg' %}" alt="">
+        </div>
+        <div class="text">
+            <h3>Dr. Kusuma</h3>
+
+            <p>Head of the Department</p>
+            <p>Dr. Kusuma, the Head of the Department of Data Science, is a visionary leader with extensive
+                experience
+                in the fields of machine learning, artificial intelligence, and big data analytics. <br>
+                With a strong academic background and numerous research publications, she has been instrumental in
+                shaping the curriculum and fostering a culture of innovation within the department. <br>
+                Her leadership ensures that students and faculty stay ahead in the rapidly evolving world of data
+                science.
+                <br>
+                She actively mentors students, collaborates on industry projects, and plays a key role in organizing
+                the
+                Data Science Fest, providing a platform for knowledge sharing and technological advancements.
+            </p>
+        </div>
+    </section>
+
+    <section class="content">
+        <img src="https://mits.ac.in/public/uploads/faculty/Lokeshwaran.JPG" alt="Dr. Lokeshwaran K">
+        <div class="text">
+            <h3>Dr. Lokeshwaran</h3>
+            <p>Vice HOD of Data Science</p>
+            <p>Vice Head of the Department – Data Science
+
+                Dr. Lokeshwaran is a distinguished academician and researcher in the field of Data Science. <br>
+                With extensive experience in artificial intelligence, machine learning, and big data analytics, he
+                plays a crucial role in shaping the curriculum and research initiatives of the department. <br>
+                As the Vice HOD, he actively mentors students and faculty, fostering innovation and industry
+                collaborations. <br>
+                His contributions to cutting-edge research in predictive modeling and deep learning have earned him
+                recognition in academic and professional circles.<br>
+                Dr. Lokeshwaran is committed to advancing data-driven solutions for real-world problems and
+                inspiring the next generation of data scientists.</p>
+        </div>
+    </section>
+
+    <section class="content">
+        <img src="https://mits.ac.in/public/uploads/faculty/kiran.jfif" alt="Mr. Kiran">
+        <div class="text">
+            <h3>Mr. Kiran Kumar</h3>
+            <p>Assistant Professor</p>
+            <p>Mr. Kiran
+                *Assistant Professor – Data Science & Head Faculty,DEFESTA
+
+                Mr. Kiran is a passionate educator and researcher in the field of Data Science, specializing in
+                artificial intelligence, machine learning, and data analytics.<br>
+                As an Assistant Professor, he is dedicated to delivering high-quality education, mentoring students,
+                and driving research initiatives in emerging technologies.
+
+                In addition to his academic role, Mr. Kiran serves as the Head Faculty of DEFESTA, where he plays a
+                pivotal role in organizing and leading data science festivals, workshops, and industry
+                collaborations. <br>
+                His leadership fosters innovation, encouraging students to engage in real-world problem-solving
+                through hackathons and research projects. With a commitment to academic excellence and practical
+                learning, he continues to shape the future of aspiring data scientists. 🚀</p>
+        </div>
+
+    </section>
+    <div class="ggg">
+        <h1>Gallery</h1>
+        <h2>DFesta 2k24</h2>
+        <div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="{% static 'images/Quiz .jpg'%}" alt="Image 1"></div>
+                <div class="gallery-item"><img src="{% static 'images/quiz1.jpg'%}" alt="Image 2"></div>
+                <div class="gallery-item"><img src="{% static 'images/D1.jpg'%}" alt="Image 3"></div>
+                <div class="gallery-item"><img src="{% static 'images/d2.jpg'%}" alt="Image 4"></div>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="{% static 'images/d3.jpg'%}" alt="Image 1"></div>
+                <div class="gallery-item"><img src="{% static 'images/d4.jpg'%}" alt="Image 2"></div>
+                <div class="gallery-item"><img src="{% static 'images/d5.jpg'%}" alt="Image 3"></div>
+                <div class="gallery-item"><img src="{% static 'images/d5.jpg'%}" alt="Image 4"></div>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="{% static 'images/d6.jpg'%}" alt="Image 1"></div>
+                <div class="gallery-item"><img src="{% static 'images/d7.jpg'%}" alt="Image 2"></div>
+                <div class="gallery-item"><img src="{% static 'images/d8.jpg'%}" alt="Image 3"></div>
+                <div class="gallery-item"><img src="{% static 'images/d9.jpg'%}" alt="Image 4"></div>
+
+            </div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="{% static 'images/d6.jpg'%}" alt="Image 1"></div>
+                <div class="gallery-item"><img src="{% static 'images/d7.jpg'%}" alt="Image 2"></div>
+                <div class="gallery-item"><img src="{% static 'images/d8.jpg'%}" alt="Image 3"></div>
+                <div class="gallery-item"><img src="{% static 'images/d9.jpg'%}" alt="Image 4"></div>
+
+            </div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="{% static 'images/d6.jpg'%}" alt="Image 1"></div>
+                <div class="gallery-item"><img src="{% static 'images/d7.jpg'%}" alt="Image 2"></div>
+                <div class="gallery-item"><img src="{% static 'images/d8.jpg'%}" alt="Image 3"></div>
+                <div class="gallery-item"><img src="{% static 'images/d9.jpg'%}" alt="Image 4"></div>
+
+            </div>
+            <div class="gallery">
+                <div class="gallery-item"><img src="{% static 'images/d6.jpg'%}" alt="Image 1"></div>
+                <div class="gallery-item"><img src="{% static 'images/d7.jpg'%}" alt="Image 2"></div>
+                <div class="gallery-item"><img src="{% static 'images/d8.jpg'%}" alt="Image 3"></div>
+                <div class="gallery-item"><img src="{% static 'images/d9.jpg'%}" alt="Image 4"></div>
+
+            </div>
+            </div>
+        </div>
+
+
+        <div>
+            <section class="head">
+                <div class="fact">
+                    <h1>Faculty</h1>
+                </div>
+            </section>
+            <br>
+
+            <section class="faculty-grid">
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Gopalakrishnan.JPG" alt="Faculty 1">
+                    <h3 class="textname">Dr.S.Gopalakrishnan</h3>
+                    <p class="name"> Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Komal%20Kumar.JPG" alt="Faculty 2">
+                    <h3 class="textname">Dr.N.Komal Kumar</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Balaji.JPG" alt="Faculty 3">
+                    <h3 class="textname">Mr.T.Balaji</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Roopa.JPG" alt="Faculty 4">
+                    <h3 class="textname">Mrs.R.Roopa</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Pugazharasi.JPG" alt="Faculty 5">
+                    <h3 class="textname">Mrs. K. Pugazharasi</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Vidhyashree.JPG" alt="Faculty 6">
+                    <h3 class="textname">Mrs. Vidhyashree B</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Twinkle.JPG" alt="Faculty 7">
+                    <h3 class="textname">Mrs.F.Twinkle Graf</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Kalyan%20Kumar.JPG" alt="Faculty 8">
+                    <h3 class="textname">Mr.A.Kalyan Kumar</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Manjula%20Prabakaran.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mrs.Manjula Prabakaran</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Durga%20Charan.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mr.K.Durga Charan</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Swetha.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mrs.T.Swetha</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/DSC_2849.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mr.Vishnukumar Ravula</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Anusuri%20Krishna%20Veni.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mrs.Anusuri Krishna Veni</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Rajkumar.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mr. Rajkumar.G</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Kiran%20Kumar.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mr.G.Kiran Kumar</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Arockia%20Raj%20Abraham.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mr.Arockia Raj Abraham</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Nandhini.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mrs.M.Nandhini</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Rantu%20Das.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mr.Rantu Das</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Bhaskar.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mr.B.Bhaskar</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Anuradha%20Prudhivi.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mrs.Anuradha Prudhivi</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/kingshuk.JPG" alt="Faculty 9">
+                    <h3 class="textname">Mr.Kingshuk Das Bakshi</h3>
+                    <p class="name">Asst.Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Yawar%20Ayub%20Matta.JPG" alt="Faculty 10">
+                    <h3 class="textname">DMr. Yawar Ayub Matta</h3>
+                    <p class="name">Asst. Professor</p>
+                </div>
+                <div class="faculty-member">
+                    <img src="https://mits.ac.in/public/uploads/faculty/Shaik%20Jamil%20Ahmed.JPG" alt="Faculty 10">
+                    <h3 class="textname">Mr. Sheik Jamil Ahmed</h3>
+                    <p class="name">Asst. Professor</p>
+                </div>
+            </section>
+
+            <style>
+                .faculty-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 20px;
+                    width: 80%;
+                    margin: auto;
+                    text-align: center;
+                    animation: fadeInUp 1s ease-in-out forwards;
+                }
+
+                .faculty-member {
+                    padding: 15px;
+                    border-radius: 10px;
+                    transition: transform 0.3s ease-in-out;
+                    animation: slideUp 0.5s ease-in-out forwards;
+                }
+
+                .faculty-member img {
+                    width: 100px;
+                    border-radius: 50%;
+                    margin-bottom: 10px;
+                    transition: transform 0.5s ease-in-out;
+                }
+
+                .faculty-member img:hover {
+                    transform: scale(1.1) rotate(5deg);
+                }
+
+                .faculty-member:hover {
+                    transform: scale(1.05);
+                }
+
+                @keyframes slideUp {
+                    from {
+                        transform: translateY(50px);
+                        opacity: 0;
+                    }
+
+                    to {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
+            </style>
+        </div>
+
+        </section>
+        <br>
+        <script>
+            // Dynamically add hamburger icon
+            const header = document.querySelector('header');
+            const nav = document.querySelector('nav');
+            const hamburger = document.createElement('div');
+            hamburger.classList.add('hamburger');
+            hamburger.innerHTML = '☰';
+            header.insertBefore(hamburger, nav);
+        
+            // Toggle navigation on click
+            hamburger.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+        </script>
+
+        <footer class="footer">
+            <p> 2025 Data Science Department Fest | All rights reserved</p>
+        </footer>
+</body>
+
+</html>

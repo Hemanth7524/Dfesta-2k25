@@ -1,0 +1,393 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFesta - 2k25</title>
+    <script>
+        // Countdown Timer
+        var countDownDate = new Date("Apr 25, 2025 00:00:00").getTime();
+        var x = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML =
+                `<span>${days}<small>days</small></span> 
+                 <span>${hours}<small>hours</small></span> 
+                 <span>${minutes}<small>mins</small></span> 
+                 <span>${seconds}<small>secs</small></span>`;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
+        // Function to Close Pop-up
+        function closePopUp() {
+            let popUp = document.querySelector('.pop-up');
+            if (popUp) {
+                popUp.style.display = "none";
+            }
+        }
+
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+        }
+    </script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+        :root {
+            --primary: #ff3366;
+            --secondary: #7c3aed;
+            --accent: #00d4ff;
+            --dark: #1a1a2e;
+            --light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background-image: url("/static/images/bg3.jpg");
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        @keyframes scaleUp {
+            from { scale: 0.9; }
+            to { scale: 1; }
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, rgb(74, 143, 247), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.4));
+            backdrop-filter: blur(10px);
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            font-weight: bolder;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header img {
+            height: 60px;
+            max-width: 100%;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        nav li {
+            cursor: pointer;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        nav li:hover {
+            color: var(--primary);
+        }
+
+        nav li::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        nav li:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        main {
+            min-height: 85vh;
+            padding: 5rem 1rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            animation: scaleUp 1s forwards;
+			/* margin-top: 30px; */
+        }
+
+        main img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+            filter: drop-shadow(0 0 20px #fff);
+        }
+
+        main p {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 600;
+            background: linear-gradient(to right, blue, purple);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .countdown-timer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+			margin-top: 30px;
+        }
+
+        .countdown-timer span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            min-width: 60px;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .countdown-timer small {
+            font-size: clamp(0.75rem, 2vw, 1rem);
+            opacity: 0.7;
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+
+        .pop-up {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: clamp(250px, 50%, 350px);
+            height: auto;
+            border-radius: 20px;
+            z-index: 1000;
+        }
+
+        .pop-up img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .pop-up p {
+            color: black;
+            font-size: clamp(0.9rem, 2.5vw, 1.125rem);
+        }
+
+        .mam-name {
+            background: linear-gradient(to right, rgb(226, 8, 92), rgb(255, 187, 0), rgb(255, 187, 0));
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+        }
+
+        .head {
+            position: relative;
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon {
+            cursor: pointer;
+            font-size: 1.25rem;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        .mam-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0.5rem;
+        }
+
+        .text {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            text-align: center;
+            color: var(--light);
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            header {
+                padding: 0.75rem 1.5rem;
+            }
+
+            header img {
+                height: 50px;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 1rem;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                padding: 0.75rem 0;
+            }
+
+            main {
+                padding-top: 4rem;
+            }
+
+            .pop-up {
+                bottom: 10px;
+                right: 10px;
+                width: 90%;
+                grid-template-columns: 1fr 2fr;
+            }
+            .hamburger{
+                order: 3;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.5rem 1rem;
+            }
+
+            header img {
+                height: 40px;
+            }
+
+            main img {
+                max-width: 90%;
+            }
+
+            .countdown-timer span {
+                min-width: 50px;
+                padding: 0.5rem;
+            }
+
+            .pop-up img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/mits_logo-removebg-preview.png' %}" alt="MITS Logo">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'registrations' %}">Registrations</a></li>
+                <li><a href="{% url 'info' %}">Info</a></li>
+            </ul>
+        </nav>
+        <span class="hamburger" onclick="toggleMenu()">☰</span>
+        <img src="{% static 'images/dsimg-removebg-preview.png' %}" alt="DS Image" style="margin-right: 10px;">
+    </header>
+
+    <main>
+        <div class="countdown-timer" id="countdown">
+            <span>0<small>days</small></span>
+            <span>0<small>hours</small></span>
+            <span>0<small>mins</small></span>
+            <span>0<small>secs</small></span>
+        </div>
+        <img src="{% static 'images/dfest-removebg-preview.png' %}" alt="DFesta Logo">
+        <div class="text">One day National Level Technical Symposium</div>
+        <div style="background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px); border-radius: 20px; padding: 10px 15px;">
+            <p>Date: 25<sup>th</sup> April 2025</p>
+        </div>
+    </main>
+
+    <div class="pop-up">
+        <img src="{% static 'images/img1.jpg' %}" alt="Dr. S. Kusuma">
+        <div class="mam-info">
+            <div class="head"><h3 class="mam-name">Dr. S. Kusuma</h3></div>
+            <p class="info">Head of DS</p>
+            <i class="bi bi-x-circle icon" style="color: red;" onclick="closePopUp()">X</i>
+        </div>
+    </div>
+</body>
+</html>

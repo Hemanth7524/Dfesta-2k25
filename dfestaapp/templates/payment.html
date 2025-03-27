@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+          background-color: black;
+        }
+        .container {
+            background-image: url("https://wallpaperaccess.com/full/4597144.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding: 20px;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 3px solid gold;
+        }
+        .container p{
+            font-size: 1rem;
+            font-weight: 600;
+            color: orange;
+        }
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            /* margin-bottom: 20px; */
+        }
+        input[type="file"] {
+            /* margin-top: 10px; */
+            font-size: 0.9rem;
+            border-bottom: 30px;
+            padding-left: 30px;
+            color: white;
+            
+        }
+        input#file-upload-button{
+            color: white;
+            background: black;
+        }
+        input p{
+            margin: auto;
+        }
+        .btn {
+          
+            width: 130px;
+            border: none;
+            background: seagreen;
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+            height: 2.5rem;
+        }
+        form button :hover{
+            background-color: gold;
+            color: black;
+        }
+        .utr{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .utr input{
+            height: 18.4px;
+            padding-left: 10px;
+            border-radius: 15px;
+           cursor: pointer;
+        }
+        .sub{
+            -bottom: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Scan QR Code to Pay</h2>
+        <img src="{% static 'images/nandhamuri_scanner.jpg' %}" alt="QR Code" class="qr-code">
+        <p>Upload payment screenshot for verification:</p>
+        {% if messages %}
+            <div>
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" accept="image/*" name="image">
+        
+        
+        <div class="utr"><p>UTR : </p>
+       <input type="text" name="utr" required></div>
+         <button type="submit" class="btn">Submit</button>
+    </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Event Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #FFD18D; */
+            background-image: url("https://imgs.search.brave.com/kx0O5BOoH_kqeFTpAgx5ojP55K1sFL67FFIZa4wUOLU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pMC53/cC5jb20vY3NzLXRy/aWNrcy5jb20vd3At/Y29udGVudC91cGxv/YWRzLzIwMTUvMDQv/b3ZlcmxheS5wbmc");
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            /* background: white; */
+            background-image: url("https://imgs.search.brave.com/hC4QM-8J6lmTTmd7MeBTkTMIV4gCv3zKzbyQ8QzjYNQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMxLm1ha2V1c2Vv/ZmltYWdlcy5jb20v/d29yZHByZXNzL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIxLzA2/LzMuLUt5ZS1NZWgu/cG5n");
+            background-size: cover;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            color: rgb(231, 231, 17);
+            font-weight: 1000;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            background-color: yellowgreen;
+            color: black;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 15px;
+            cursor: pointer;
+            border: 2px solid black;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+        button:hover {
+            background-color: chocolate;
+        }
+        #year option{
+            font-size: 1rem;
+        }
+        #name{
+            border: 2px solid black;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+        #email{
+            border: 2px solid black;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+        #phone{
+            border: 2px solid black;
+            border-radius: 40px;
+            cursor: pointer;
+        }
+        #department{
+            border: 2px solid black;
+            border-radius: 40px;
+        }
+        #year{
+            border: 2px solid black;
+            border-radius: 40px;
+        }
+        .box{
+            width: 280px;
+        }
+        a{
+            display: flex;
+            justify-content: center;
+            padding-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ eventname }} Event Registration</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="event" value="{{ eventname }}">
+
+           <div class="box">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter name" required>
+           
+            <label for="Roll NUMBER">Roll Number</label>
+            <input type="text" id="numbers" name="numbers" placeholder="Enter Roll Number" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter mail" required>
+            
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter mobile" required>
+
+           </div>
+           <label for="from">From</label>
+           <select id="Source" name="Source">
+            <option value="Internal">Internal</option>
+            <option value="External">External</option>
+
+           </select>
+            
+            <label for="department">Department</label>
+            <select id="department" name="department">
+                <option value="Computer Science">Computer Science & Engineering</option>
+                <option value="computer Science">Computer Science & Engineering-Data Science</option>
+                <option value="computer Science">Computer Science & Engineering-Artifical intelligence</option>
+                <option value="computer Science">Computer Science & Engineering-Cyber Security</option>
+                <option value="computer Science">Computer Science & Engineering-Ai-Ml & Networks</option>
+                <option value="computer Science">Computer Science & Engineering-Technology</option>
+                <option value="ECE">Electronics & Communication Engineering</option>
+                <option value="EEE"> Electrical & Electronics Engineering</option>
+                <option value="Mechanical">Mechanical Engineering</option>
+                <option value="Civil">Civil Engineering</option>
+            </select>
+            
+            <label for="year">Year</label>
+            <select id="year" name="year">
+                <option value="1">1st</option>
+                <option value="2">2nd</option>
+                <option value="3">3rd</option>
+                <option value="4">4th</option>
+            </select>
+            
+            <button type="submit">Register</button>
+            
+        </form>
+        
+    </div>
+</body>
+</html>

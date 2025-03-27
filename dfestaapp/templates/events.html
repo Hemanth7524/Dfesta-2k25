@@ -1,0 +1,386 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFESTA 2K25 Events</title>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* margin: 0;
+            padding: 0; */
+            background-image: url("https://www.creativefabrica.com/wp-content/uploads/2020/07/05/abstract-dark-blue-background-Graphics-4547092-1.jpg");
+            background-size: cover;
+        }
+
+        header {
+            /* position: fixed; */
+            width: 100%;
+            /* padding: 8px 4rem; */
+            background: linear-gradient(to right,rgb(74, 143, 247),rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0.4));
+            backdrop-filter: blur(10px);
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            font-weight: bolder;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header img {
+            height: 80px;
+        }
+        img.one{
+            margin-left: 50px;
+        }
+        img.two{
+            margin-right: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav li {
+            cursor: pointer;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        nav li:hover {
+            color: var(--primary);
+        }
+
+        nav li::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg,red,blue);
+            transition: width 0.3s ease;
+        }
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        html{
+            background-color: #000;
+        }
+        nav li:hover::after {
+            width: 100%;
+        }
+        nav a {
+    display: block;
+    text-decoration: none;
+    color: black; /* Set a visible color */
+    padding: 10px;
+}
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            color: #a885bc;
+            margin-top: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container h3 {
+            color: hwb(341 23% 15%);
+        }
+
+        .events {
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 3px solid #000;
+            border-radius: 8px;
+            background-color: #d49d83;
+            display: flex;
+            justify-content: space-between;
+            opacity: 0;
+            z-index: 1;
+            position: relative;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-in-out forwards;
+            background-image: url("https://www.creativefabrica.com/wp-content/uploads/2020/07/05/abstract-dark-blue-background-Graphics-4547092-1.jpg");
+        }
+
+        .event-link {
+            text-decoration: none;
+            display: block;
+            width: 60%;
+            margin: auto;
+        }
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .events h2 {
+            text-align: center;
+            color: hwb(341 23% 15%);
+        }
+
+        .event-details {
+            flex: 1;
+        }
+
+        .venue {
+            flex: 1;
+            text-align: right;
+            font-weight: bold;
+            color: #d49d83;
+        }
+
+        .venue h2 {
+            color: #cab719;
+
+        }
+
+        .events ul {
+            list-style-type: none;
+            padding-left: 0;
+            color: #d49d83;
+        }
+
+        .events ul li {
+            padding: 5px 0;
+        }
+
+        footer {
+
+            background-image: url("https://www.creativefabrica.com/wp-content/uploads/2020/07/05/abstract-dark-blue-background-Graphics-4547092-1.jpg");
+            color: #cab719;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 5px 0;
+        }
+        @media (max-width: 1024px) {
+            header {
+                padding: 0.75rem 1.5rem;
+            }
+
+            header img {
+                height: 50px;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 500px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 9999; /* Ensures it stays on top */
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    nav li {
+        padding: 0.75rem 0;
+    }
+    .hamburger{
+        order: 3;
+    }
+}
+
+        
+
+            
+        @media (max-width: 480px) {
+            header {
+                padding: 0.5rem 1rem;
+            }
+
+            header img {
+                height: 40px;
+            }}
+            .container{
+                position: relative;
+                z-index: 0 !important;
+            }
+            nav ul{
+                z-index: 9999;
+            }
+            nav {
+                z-index: 1000;
+                position: relative;
+            }
+            header{
+                z-index: 1000;
+                position: relative;
+            }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img class="one" src="{% static 'images/mitslogo.jpg' %}" alt="">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'about' %}"> About</a></li>
+                <li><a href="{% url 'events' %}"> Events</a></li>
+                <li><a href="{% url 'registrations' %}"> Registrations</a></li>
+                <li><a href="{% url 'info' %}"> info</a></li>
+            </ul>
+        </nav>
+        <span class="hamburger" onclick="toggleMenu()">☰</span>
+        <img class="two" src="{% static 'images/dslogo.jpg' %}" alt="">
+    </header>
+    <h1>DFESTA 2K25 Events</h1>
+    <div class="container" style="z-index: 0;">
+        <a href="{% url 'technical_events' %}" class="event-link">
+            <div class="events" id="technical">
+                <div class="event-details">
+                    <h2>Technical Events</h2>
+                    <ul>
+                        <li>Quiz</li>
+                        <li>Debugging</li>
+                        <li>Paper Presentation</li>
+                        <li>Web Xpress</li>
+                        <li>Project Expo</li>
+                        <li>Data Treasure Hunt</li>
+                        <li>Vision Challenge</li>
+                    </ul>
+                </div>
+                <div class="venue">
+                    <h3>Venue</h3>
+                    <ul>
+                        <li>Hall A</li>
+                        <li>Lab 1</li>
+                        <li>Conference Room</li>
+                        <li>Lab 2</li>
+                        <li>Exhibition Hall</li>
+                        <li>Outdoor Arena</li>
+                        <li>Main Auditorium</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+        <a href="{% url 'non_technical_events' %}" class="event-link">
+            <div class="events" id="non-technical">
+                <div class="event-details">
+                    <h2>Non-Technical Events</h2>
+                    <ul>
+                        <li>Movies</li>
+                        <li>Photography / Short Film</li>
+                        <li>Squid Games</li>
+                        <li>Fun Activities</li>
+                        <li>Escape Room</li>
+                    </ul>
+                </div>
+                <div class="venue">
+                    <h3>Venue</h3>
+                    <ul>
+                        <li>Screening Room</li>
+                        <li>Media Hall</li>
+                        <li>Playground</li>
+                        <li>Recreation Center</li>
+                        <li>Escape Zone</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+        <a href="{% url 'sports_events' %}" class="event-link">
+            <div class="events" id="sports">
+                <div class="event-details">
+                    <h2>Sports</h2>
+                    <ul>
+                        <li>Boys: Volleyball, Cricket</li>
+                        <li>Girls: Tug of War, Badminton</li>
+                    </ul>
+                </div>
+                <div class="venue">
+                    <h3>Venue</h3>
+                    <ul>
+                        <li>Volleyball Court</li>
+                        <li>Cricket Ground</li>
+                        <li>Gymnasium</li>
+                        <li>Indoor Stadium</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+        <a href="{% url 'e_sports_events' %}" class="event-link">
+            <div class="events" id="e-sports">
+                <div class="event-details">
+                    <h2>E-Sports</h2>
+                    <ul>
+                        <li>Free Fire</li>
+                        <li>PUBG</li>
+                    </ul>
+                </div>
+                <div class="venue">
+                    <h3>Venue</h3>
+                    <ul>
+                        <li>Gaming Lab</li>
+                        <li>Cyber Arena</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+    </div>
+    <footer>
+        <h3>Contact Information</h3>
+        <p>For More Updates</p>
+        <ul>
+            <li>Jagadeesh Chowdary 9989436166</li>
+            <li>Lucky 9989436166</li>
+            <li>Asifa Shaik 8019153804</li>
+            <li>Hema Teja Reddy 9121451101</li>
+        </ul>
+    </footer>
+</body>
+
+</html>

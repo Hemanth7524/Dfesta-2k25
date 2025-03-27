@@ -1,0 +1,267 @@
+/* Google Fonts Import */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+:root {
+	--primary: #ff3366;
+	--secondary: #7c3aed;
+	--accent: #00d4ff;
+	--dark: #1a1a2e;
+	--light: #ffffff;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Poppins", sans-serif;
+	background: url("./bg3.jpg");
+	color: var(--light);
+	height: 100vh;
+	overflow-x: hidden;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+@keyframes scaleUp {
+	from{
+		scale: 0.9;
+	}
+	to{
+		scale: 1;
+	}
+}
+
+header {
+	position: fixed;
+	width: 100%;
+	padding: 8px 4rem;
+	background: linear-gradient(to right,rgb(74, 143, 247),rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0.4));
+	backdrop-filter: blur(10px);
+    color: black;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 100;
+	font-weight: bolder;
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+header img {
+	height: 80px;
+}
+
+nav ul {
+	display: flex;
+	gap: 2.5rem;
+	list-style: none;
+}
+
+nav li {
+	cursor: pointer;
+	font-weight: 500;
+	position: relative;
+	padding: 0.5rem 0;
+	transition: color 0.3s ease;
+}
+
+nav li:hover {
+	color: var(--primary);
+}
+
+nav li::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background: linear-gradient(90deg, var(--primary), var(--accent));
+	transition: width 0.3s ease;
+}
+
+nav li:hover::after {
+	width: 100%;
+}
+
+main {
+	height: 85%;
+	padding:4rem;
+	padding-top: 7rem;
+	padding-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	animation: scaleUp 1s forwards;
+}
+
+main img {
+	width: auto;
+	height: 50%;
+	border-radius: 1rem;
+	opacity: 0;
+	transform: translateY(20px);
+	animation: fadeInUp 1s ease forwards;
+	filter: drop-shadow(0 0 20px #fff);
+}
+
+.text{
+	color: rgba(255, 255, 255, 0.696);
+	font-size: 20px;
+	font-weight: 600;
+}
+main p {
+	font-size: 2rem;
+	font-weight: 600;
+	background: linear-gradient(to right, blue, purple); /* Blue to Purple gradient */
+  -webkit-background-clip: text; 
+  color: transparent;
+	/* background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(10px); */
+	text-align: center;
+	position: relative;
+	z-index: 10;
+	border-radius: 20px;
+}
+.countdown-timer {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+}
+
+.countdown-timer span {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(10px);
+	padding: 1rem;
+	border-radius: 0.5rem;
+	min-width: 80px;
+	font-size: 2rem;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.countdown-timer small {
+	font-size: 1rem;
+	opacity: 0.7;
+	text-transform: uppercase;
+	margin-top: 0.25rem;
+}
+.pop-up{
+	background: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(10px);
+	padding: 7px 8px;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	position: absolute;
+	bottom: 20px;
+	right: 30px;
+	width: 350px;
+	height: 80px;
+	border-radius: 30px;
+}
+.pop-up img{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	margin-left: 20px;
+}
+.pop-up p{
+	color: black;
+	font-size: 18px;
+}
+.mam-name{
+	background: linear-gradient(to right,rgb(226, 8, 92), rgb(255, 187, 0),rgb(255, 187, 0)); /* Blue to Purple gradient */
+  -webkit-background-clip: text; 
+  color: transparent;
+  font-size: 24px;
+}
+.head{
+	position: relative;
+	display: flex;
+	gap: 20px;
+}
+.icon{
+	position: absolute;
+	top: 3px;
+	right: 8px;
+}
+.mam-info{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+.pop-up.exit {
+    transform: translateX(100%); /* Move the pop-up out of the screen */
+    transition: transform 0.5s ease; /* Smooth transition */
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (max-width: 768px) {
+	header {
+		padding: 1rem 2rem;
+	}
+
+	nav ul {
+		gap: 1.5rem;
+	}
+
+	main {
+		padding: 1rem 2rem;
+	}
+
+	.countdown-timer {
+		font-size: 2rem;
+		padding: 1.5rem 2rem;
+	}
+
+	.countdown-timer span {
+		min-width: 60px;
+		padding: 0.75rem;
+		font-size: 1.5rem;
+	}
+
+	.countdown-timer small {
+		font-size: 0.75rem;
+	}
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+a{
+	text-decoration: none;
+	color: black;
+}

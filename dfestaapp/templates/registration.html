@@ -1,0 +1,757 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+        }
+    </script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    
+    background-position: center; 
+    background-attachment: fixed;
+    color: #fff;
+    line-height: 1.6;
+}
+header {
+            position: fixed;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, rgb(74, 143, 247), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.4));
+            backdrop-filter: blur(10px);
+            color: black;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 100;
+            font-weight: bolder;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header img {
+            height: 60px;
+            max-width: 100%;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        nav li {
+            cursor: pointer;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        nav li:hover {
+            color: var(--primary);
+        }
+
+        nav li::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, red, blue);
+            transition: width 0.3s ease;
+        }
+
+        nav li:hover::after {
+            width: 100%;
+        }
+        nav a {
+    display: block;
+    text-decoration: none;
+    color: black; /* Set a visible color */
+    padding: 10px;
+}
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+.hero-section{
+    /* background-image:url("/static/images/Sravani.jpg"); */
+    background-image: url("/static/images/Sravani.jpg");
+    background-position: center;
+    background-attachment: fixed;
+    padding: 100px 5%;
+}
+.events-container{  
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.registration{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.events-container {
+    max-width: 890px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.event-category {
+    margin-bottom: 40px;
+    background-image:url("/static/images/bg1Frosted.jpeg");   
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10px 50px 30px;
+    background-position: center;
+    background-attachment: fixed;
+    border: 2px solid rgba(67, 68, 69, 0.735);
+    border-radius: 10px;
+    box-shadow:5px 5px 15px rgba(19, 93, 118, 0.721) ;
+}
+
+h2 {
+    font-size: 2em;
+    color: #d28716;
+    text-align: center;
+}
+
+.event-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #888 #f1f1f1; /* For Firefox */
+}
+
+.event-card{
+    display: flex;
+    flex-direction: column;
+    background-image:url("/static/images/card-img.jpeg"); 
+    background-color: rgba(0,0,0,0.3);
+    background-blend-mode: overlay;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(184, 179, 179, 0.698);
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 10px;
+    height: 280px;
+    box-shadow: 2px 4px 8px rgba(110, 110, 110, 0.616);
+    min-width: 250px; 
+    flex: 0 0 auto; 
+    margin-right: 10px;
+}
+.event-card:hover{
+    padding: 21.5px;
+    background-color:rgba(0,0,0,0);
+}
+p{
+    margin: 0;
+}
+.date-time,.venue,.fee-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.85);
+}
+.btns{
+    display: flex;
+    gap: 10px;
+    font-weight: bold;
+}
+.btns button{
+    padding: 8px 15px;
+    border: 1px solid grey;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.regis-btn{
+    color: white;
+    background-color: rgb(29, 29, 72);
+}
+.regis-btn:hover{
+    background-color: #dc9730d6;
+}
+.contact{
+    color: rgb(29, 29, 68);
+    background-color: #d1e2ffc9;
+}
+.contact:hover{
+    background-color: #d1e2ff ;
+}
+.event-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 0;
+    scrollbar-width: none;  
+}
+
+.event-scroll::-webkit-scrollbar {
+    display: none;  
+}
+
+ 
+h3 {
+    font-size: 1.5em;
+    color: #00ced1;
+    margin: 0;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+@media (max-width: 600px) {
+    .events-container {
+        padding: 10px;
+    }
+    .event-category{
+        padding: 20;
+    }
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    .event-card, .event-subcategory {
+        min-width: 230px;
+    }
+}
+@media (max-width:480px){
+    .event-card {
+        min-width: 200px;
+    }
+    .event-category{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+ /* Responsive Design */
+ @media (max-width: 1024px) {
+            header {
+                padding: 0.75rem 1.5rem;
+            }
+
+            header img {
+                height: 50px;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                order: 3;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 1rem;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                padding: 0.75rem 0;
+            }
+            .hamburger{
+                order: 3;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.5rem 1rem;
+            }
+
+            header img {
+                height: 40px;
+            }
+        }
+a{
+    text-decoration: none;
+    color: black;
+}
+@keyframes scaleUp {
+	from{
+		scale: 0.9;
+	}
+	to{
+		scale: 1;
+	}
+}
+*{
+    animation: scaleUp 1s forwards;
+}
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <img src="{% static 'images/mitslogo.jpg' %}" alt="">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'about' %}"> About</a></li>
+                <li><a href="{% url 'events' %}"> Events</a></li>
+                <li><a href="{% url 'registrations' %}"> Registrations</a></li>
+                <li><a href="{% url 'info' %}"> info</a></li>
+            </ul>
+        </nav>
+        <span class="hamburger" onclick="toggleMenu()">☰</span>
+        <img src="{% static 'images/dslogo.jpg' %}" alt="">
+    </header>
+    <div class="herosec">
+     <div class="hero-section">
+
+        <section class="events-container">
+            <h1 class="registration">Registrations</h1>
+            <div class="event-category">
+                <h2>Technical</h2>
+                <div class="event-scroll">
+                    <div class="event-card">
+                        <h3 class="event-head">Quiz</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="Quiz">
+                                <button type="submit" class="regis-btn">Register</button>
+                            </form>
+                        </div>
+
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Debugging</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="debugging">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Paper Presentation</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="paperpresentation">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Web Xpress</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="web">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Project Expo</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="projectexpo">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Data Treasure Hunt</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="treasurehunt">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Vision Challenge</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="visionchallenge">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-category">
+                <h2>Non-Technical</h2>
+                <div class="event-scroll">
+                    <div class="event-card">
+                        <h3 class="event-head">Movies</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="movies">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Photography/Short Film</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="shortfilm">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Squid Games</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="squidgame">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Fun-Activities</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="Fun-Activities">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Escape-Room</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="Escape-Room">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">E-Sports</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="E-Sports">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 style="color: rgb(192, 22, 138); text-align: center;">Sports</h1>
+            <div class="event-category">
+                <h2>Boys</h2>
+                <div class="event-scroll">
+                    <div class="event-card">
+                        <h3 class="event-head">Cricket</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 500/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="cricket">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Volley Ball</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 500/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="volleyball">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-category">
+                <h2>Girls</h2>
+                <div class="event-scroll">
+                    <div class="event-card">
+                        <h3 class="event-head">Badminton</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="badminton">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <h3 class="event-head">Tug of War</h3>
+                        <div class="date-time">
+                            <p class="date">February 28</p>
+                            <p class="time"><i class="bi bi-clock"></i> 2pm - 5pm</p>
+                        </div>
+                        <div class="venue">
+                            <p class="clg"><i class="bi bi-geo-alt-fill"></i> MITS</p>
+                            <p class="location">Madanapalli</p>
+                        </div>
+                        <div class="fee-details">
+                            <p class="regis">Registration</p>
+                            <p class="fee">Fee : 100/-</p>
+                        </div>
+                        <div class="btns">
+                            <form method="get" action="{% url 'register' %}">
+                                <input type="hidden" name="event" value="tugofwar">
+                                <button class="regis-btn">Register</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    </div>
+    </div>
+</body>
+
+</html>

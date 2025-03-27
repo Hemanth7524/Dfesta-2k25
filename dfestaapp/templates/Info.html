@@ -1,0 +1,411 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Organizers and Coordinators</title>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url("https://img.freepik.com/free-vector/gradient-abstract-background_23-2149131346.jpg?t=st=1741878931~exp=1741882531~hmac=301af20db26dffb31b50b3a4eb56875a81d46fccdc5a873d61d72ba3a7efa1b8&w=1380");
+
+            font-family: Arial, sans-serif;
+        }
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, rgb(74, 143, 247), rgba(218, 146, 146, 0.3), rgba(255, 255, 255, 0.4));
+            backdrop-filter: blur(10px);
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            font-weight: bolder;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header img {
+            height: 60px;
+            width: 100px;
+            max-width: 60%;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        nav li {
+            cursor: pointer;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        nav li::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg,red,blue);
+            transition: width 0.3s ease;
+        }
+
+        nav li:hover::after {
+            width: 100%;
+        }
+        nav a {
+    display: block;
+    text-decoration: none;
+    color: black; /* Set a visible color */
+    padding: 10px;
+}
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .container {
+            margin-top: 200px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                }
+
+         h1,h2 {
+            text-align: center;
+            margin: 20px 0;
+            color:#ff33e0 ;
+        }
+        h1{
+            margin-top: 100px;
+        }
+        .section {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .person {
+            background-image: url("https://img.freepik.com/free-vector/gradient-technological-background_23-2148884155.jpg?ga=GA1.1.915960946.1739031133&semt=ais_hybrid");
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .person p:nth-of-type(2) { /* Position text */
+                color: #a288d5; /* Orange Red */
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+            border: 4px solid #ff4e50;
+        }
+        .info h3{
+            color: #007bff;
+        }
+        .info p{
+            margin: 5px 0;
+        }
+        .info p:nth-child(2){
+            color:#28a745 ;
+            font-weight: bold;
+        }
+        .info p:nth-child(3){
+            color:#dc3545;
+        }
+        .info p:nth-child(4){
+            color:#6c757d
+        }
+        .info p:nth-child(5){
+            color:#007bff
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        @media (max-width: 1024px) {
+            header {
+                padding: 0.75rem 1.5rem;
+            }
+
+            header img {
+                height: 50px;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 1rem;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                padding: 0.75rem 0;
+            }
+            .hamburger{
+                order: 3;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.5rem 1rem;
+            }
+
+            header img {
+                height: 40px;
+            }
+
+        }
+        .one{
+            width:120px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="{% static 'images/mitslogo.jpg' %}" alt="" class="one">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'about' %}"> About</a></li>
+                <li><a href="{% url 'events' %}"> Events</a></li>
+                <li><a href="{% url 'registrations' %}"> Registrations</a></li>
+                <li><a href="{% url 'info' %}"> info</a></li>
+            </ul>
+        </nav>
+        <span class="hamburger" onclick="toggleMenu()">☰</span>
+        <img src="{% static 'images/dslogo.jpg' %}" alt="">
+    </header>
+    <div class="container">
+        <h1 >Student Organizers and Coordinators</h1>
+
+        <h2>Student Coordinators</h2>
+        <div class="section">
+            <div class="person">
+                <img src="{% static 'images/vamshi.jpg' %}" alt="Coordinator 1" class="profile-img">
+                <div class="info">
+                    <h3>P.Vamsi Prasad</h3>
+                    <p>Head</p>
+                    <p>Phone: 6302159229</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/hem.jpg' %}" alt="Coordinator 2" class="profile-img">
+                <div class="info">
+                    <h3>A.Vindya</h3>
+                    <p>Head</p>
+                    <p>Phone: 7396018600</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/anu.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>G.Hemanth</h3>
+                    <p>Head</p>
+                    <p>Phone: 9515405463</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/abdul.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Jeevan</h3>
+                    <p>Head</p>
+                    <p>Phone: 8500787741</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/srikar.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Gnana Srikar</h3>
+                    <p>Registrations</p>
+                    <p>Phone: 7013953550</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/abdul.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Abdul Kalam</h3>
+                    <p>Registrations</p>
+                    <p>Phone:8019397343</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/vishnu.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Vishnu</h3>
+                    <p>Hospitatilty,Banners & posters</p>
+                    <p>Phone: 8019153804</p>
+                </div>
+            </div>
+            <div class="person" style="align-content: center; ">
+                <img src="{% static 'images/Jeevana.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Jeevana</h3>
+                    <p>Decoration</p>
+                    <p>Phone: 7013436289</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/harsha.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Niharika</h3>
+                    <p>Decoration</p>
+                    <p>Phone: 8143767320</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/sudheer.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Sudheer</h3>
+                    <p>Certificates & Prizes,Social Media</p>
+                    <p>Phone: 9346098358</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/tarak.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Jagadeesh</h3>
+                    <p>Venue & Discipline</p>
+                    <p>Phone: 9381665074</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="https://via.placeholder.com/120" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Veeksha </h3>
+                    <p>Promotions</p>
+                    <p>Phone: 7893903449</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/raket.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Raket balu </h3>
+                    <p>Sports</p>
+                    <p>Phone: 9000000003</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/su.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>sudheer</h3>
+                    <p>Logistics</p>
+                    <p>Phone:7386685471</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="{% static 'images/Abu.jpg' %}" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Abu Bakar siddiq</h3>
+                    <p>Coordinator</p>
+                    <p>Phone: 9963121976</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="https://via.placeholder.com/120" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Coordinator 16</h3>
+                    <p>Coordinator</p>
+                    <p>Phone: 9000000003</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="https://via.placeholder.com/120" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Coordinator 17</h3>
+                    <p>Coordinator</p>
+                    <p>Phone: 9000000003</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="https://via.placeholder.com/120" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Coordinator 18</h3>
+                    <p>Coordinator</p>
+                    <p>Phone: 9000000003</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="https://via.placeholder.com/120" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Coordinator 19</h3>
+                    <p>Coordinator</p>
+                    <p>Phone: 9000000003</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="https://via.placeholder.com/120" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Coordinator 20</h3>
+                    <p>Coordinator</p>
+                    <p>Phone: 9000000003</p>
+                </div>
+            </div>
+            <div class="person">
+                <img src="https://via.placeholder.com/120" alt="Coordinator 3" class="profile-img">
+                <div class="info">
+                    <h3>Coordinator 3</h3>
+                    <p>Coordinator</p>
+                    <p>Phone: 9000000003</p>
+                </div>
+            </div>
+            <!-- Repeat the above block 22 more times with different coordinator numbers -->
+        </div>
+    </div>
+</body>
+</html>

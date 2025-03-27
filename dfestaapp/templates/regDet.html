@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registraton Details</title>
+</head>
+<style>
+    .tab{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    
+</style>
+<body>
+   <div class="tab">
+    <table bgcolor="black" width="800">
+        
+            <tr bgcolor="grey">
+                <th height="30" width="300">Name</th>
+                <th height="30" width="120">Phone</th>
+                <th height="30" width="120">Event</th>
+                <th height="30" width="15   0">Dept</th>
+                <th height="30" width="120">Year</th>
+            </tr>
+        
+        
+            {% for i in data %}
+            <tr bgcolor="lightgrey" align="center">
+                <td height="25">{{ i.fullname }}</td>
+                <td height="25">{{ i.phone }}</td>
+                <td height="25">{{ i.event }}</td>
+                <td height="25">{{ i.dept }}</td> 
+                <td height="25">{{ i.year }}</td>
+            </tr>
+            {% endfor %}
+       
+    </table>
+   </div>
+   
+</body>
+</html>
