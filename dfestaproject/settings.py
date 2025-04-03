@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!)shep!56a5+vm6)_og#4v11ydjl!dr220i^!=)i*f#t!yeu&3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["dfesta-2k25.onrender.com", "www.dfesta.in", "127.0.0.1", "localhost"]
 
 
 # Application definition
