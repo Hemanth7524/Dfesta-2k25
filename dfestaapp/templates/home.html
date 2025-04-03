@@ -42,10 +42,13 @@
             nav.classList.toggle('active');
         }
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
@@ -379,10 +382,17 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); */
         /* } */
+
+        .carousel {
+            width: 50%;
+            margin-inline: auto;
+            border-radius: 40px;
+            overflow: hidden;
+        }
         .carousel-item {
             position: relative;
             width: 100%;
-            height: 500px;
+            height: auto;
             transform-style: preserve-3d;
             display: flex;
             justify-content: center;
@@ -390,16 +400,24 @@
             
         }
         .carousel-item img{
-            width: 500px;
-            height: 300px;
+            height: 400px;
+            width: auto;
+            object-fit: cover;
         }
-        . {
-            position: absolute;
-            width: 500px;
-            height:300px;
-            transition: transform 1s ease-in-out;
+        .carousel-item{
+            height: auto;
         }
 
+        .carousel-item{
+            z-index: 0;
+        }
+
+        .carousel-item.active{
+            z-index: 20;
+        }
+        .carousel-indicators, .carousel-control-prev, .carousel-control-next{
+            z-index: 50;
+        }
         
     </style>
 
@@ -442,56 +460,34 @@
             <i class="bi bi-x-circle icon" style="color: red;" onclick="closePopUp()">X</i>
         </div>
     </div>
-    <!-- <div class="gallery-container">
-        <div class="gallery-item"><img src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg" alt="Image 1"></div>
-        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAkxDeirD1pCIUPHJIRZ4_M7a65y5qc7E4pAaD-cwiTVX1dUv272W6ivM2qVzguIhOy80&usqp=CAU" alt="Image 2"></div>
-        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWajvV5B2JH79hVDTql_ENcl-rFQ7fuuwFIksejmmjV7xp-X6gjf-7u8ZGKzUB4tv7F3Y&usqp=CAU" alt="Image 3"></div>
-        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXPwTsjPUChkGEApWikrx64wdSRxGejsoSBSQJacebaXYVuVPi7he-awUnRdmTeY5jEFo&usqp=CAU" alt="Image 4"></div>
-        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkIioyd_DZ1jfHo7acNyQnWE_2W_ypR3xFmdx9FdVgF-PJjbZYggzYq6NQR6PlmZ7awfs&usqp=CAU" alt="Image 5"></div>
-        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBaae4nwriVrjEA35FiLZzKReVSWJU1y8Ndpsma8OyFd0arqWOV3xQV6xmXwlUdi9oCNo&usqp=CAU" alt="Image 6"></div>
-    </div>
-
-    <script>
-        const gallery = document.getElementById('gallery');
-        const items = document.querySelectorAll('.gallery-item');
-        const totalItems = items.length;
-        let angle = 0;
-        let currentIndex = 0;
-
-        function updateRotation() {
-            angle = (currentIndex * -60) % 360; // Anti-clockwise rotation (negative angle)
-            items.forEach((item, index) => {
-                let rotateAngle = index * -60 - angle;
-                item.style.transform = `rotateY(${rotateAngle}deg) translateZ(150px)`;
-            });
-        }
-
-        function rotateGallery() {
-            updateRotation();
-            currentIndex = (currentIndex + 1) % totalItems;
-            setTimeout(rotateGallery, 5000); // Pause for 5 seconds before rotating again
-        } -->
-
-        <!-- // Initialize positions
-        items.forEach((item, index) => {
-            item.style.transform = `rotateY(${index * -60}deg) translateZ(150px)`;
-        });
-
-        setTimeout(rotateGallery, 5000); // Start rotation -->
-    <!-- </script> -->
-    <div class="carousel-item">
-        <img src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg" alt="...">
-        <img src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg" alt="">
-        <img src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg" alt="">
-        <img src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg" alt="">
-        <img src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg" alt="">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>...</h5>
-          <p>...</p>
+    <h1 style="text-align: center;">Gallery</h1>
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/D1.jpg' %}" class="d-block w-100" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/d2.jpg' %}" class="d-block w-100" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/d3.jpg' %}" class="d-block w-100" alt="Slide 3">
+            </div>
         </div>
-      </div>
-      <script>
-        $('.carousel').carousel()
-      </script>
+        
+        <!-- Previous & Next buttons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+        
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"></button>
+        </div>
+    </div>
 </body>
 </html>
