@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Image Gallery with Pause</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            perspective: 1000px;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            transform-style: preserve-3d;
+        }
+
+        .gallery-item {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            transition: transform 1s ease-in-out;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container" id="gallery">
+        <div class="gallery-item"><img src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg" alt="Image 1"></div>
+        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAkxDeirD1pCIUPHJIRZ4_M7a65y5qc7E4pAaD-cwiTVX1dUv272W6ivM2qVzguIhOy80&usqp=CAU" alt="Image 2"></div>
+        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWajvV5B2JH79hVDTql_ENcl-rFQ7fuuwFIksejmmjV7xp-X6gjf-7u8ZGKzUB4tv7F3Y&usqp=CAU" alt="Image 3"></div>
+        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXPwTsjPUChkGEApWikrx64wdSRxGejsoSBSQJacebaXYVuVPi7he-awUnRdmTeY5jEFo&usqp=CAU" alt="Image 4"></div>
+        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkIioyd_DZ1jfHo7acNyQnWE_2W_ypR3xFmdx9FdVgF-PJjbZYggzYq6NQR6PlmZ7awfs&usqp=CAU" alt="Image 5"></div>
+        <div class="gallery-item"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBaae4nwriVrjEA35FiLZzKReVSWJU1y8Ndpsma8OyFd0arqWOV3xQV6xmXwlUdi9oCNo&usqp=CAU" alt="Image 6"></div>
+    </div>
+
+    <script>
+        const gallery = document.getElementById('gallery');
+        const items = document.querySelectorAll('.gallery-item');
+        const totalItems = items.length;
+        let angle = 0;
+        let currentIndex = 0;
+
+        function updateRotation() {
+            angle = (currentIndex * -60) % 360; // Anti-clockwise rotation (negative angle)
+            items.forEach((item, index) => {
+                let rotateAngle = index * -60 - angle;
+                item.style.transform = `rotateY(${rotateAngle}deg) translateZ(150px)`;
+            });
+        }
+
+        function rotateGallery() {
+            updateRotation();
+            currentIndex = (currentIndex + 1) % totalItems;
+            setTimeout(rotateGallery, 5000); // Pause for 5 seconds before rotating again
+        }
+
+        // Initialize positions
+        items.forEach((item, index) => {
+            item.style.transform = `rotateY(${index * -60}deg) translateZ(150px)`;
+        });
+
+        setTimeout(rotateGallery, 5000); // Start rotation
+    </script>
+</body>
+</html>
