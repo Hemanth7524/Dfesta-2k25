@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!)shep!56a5+vm6)_og#4v11ydjl!dr220i^!=)i*f#t!yeu&3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['dfesta-2k25.onrender.com','dfesta.in','127.0.0.1']
+ALLOWED_HOSTS = ['dfesta-2k25.onrender.com','dfesta.in','127.0.0.1', "www.dfesta.in"]
 
 
 # Application definition
