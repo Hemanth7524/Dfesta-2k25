@@ -1,0 +1,311 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{{ event_category }} - {{ event_title }}</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-image: url("https://img.freepik.com/free-vector/circles-background-dark-tones_60389-166.jpg?ga=GA1.1.915960946.1739031133&semt=ais_hybrid");
+				background-repeat: no-repeat;
+				background-size: cover;
+				min-height: 100vh;
+				margin: 0;
+				padding: 0;
+			}
+
+			header {
+				width: 100%;
+				background: linear-gradient(
+					to right,
+					rgb(74, 143, 247),
+					rgba(255, 255, 255, 0.3),
+					rgba(255, 255, 255, 0.4)
+				);
+				backdrop-filter: blur(10px);
+				color: black;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				z-index: 100;
+				font-weight: bolder;
+				box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+			}
+
+			header img {
+				height: 80px;
+			}
+
+			img.one {
+				margin-left: 50px;
+			}
+
+			img.two {
+				margin-right: 50px;
+			}
+
+			nav ul {
+				display: flex;
+				gap: 2.5rem;
+				list-style: none;
+			}
+
+			nav li {
+				cursor: pointer;
+				font-weight: 500;
+				position: relative;
+				padding: 0.5rem 0;
+				transition: color 0.3s ease;
+			}
+
+			nav li:hover {
+				color: var(--primary);
+			}
+
+			nav li::after {
+				content: "";
+				position: absolute;
+				width: 0;
+				height: 2px;
+				bottom: 0;
+				left: 0;
+				background: linear-gradient(90deg, red, blue);
+				transition: width 0.3s ease;
+			}
+
+			nav li:hover::after {
+				width: 100%;
+			}
+
+			nav a {
+				display: block;
+				text-decoration: none;
+				color: black;
+				padding: 10px;
+			}
+
+			.hamburger {
+				display: none;
+				font-size: 2rem;
+				cursor: pointer;
+			}
+
+			.container {
+				width: 80%;
+				margin: 20px auto;
+				background: linear-gradient(to right, "#ff7e5f", "#feb47b");
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			h1 {
+				text-align: center;
+				color: #4a00e0;
+				margin-bottom: 30px;
+			}
+
+			h3 {
+				color: #00ffeef9;
+				margin-top: 20px;
+				font-size: 1.3em;
+			}
+
+			p {
+				font-size: 16px;
+				line-height: 1.6;
+				color: {
+					 {
+						text_color|default: "#555";
+					}
+				}
+				text-align: justify;
+			}
+
+			.details {
+				padding: 10px 20px;
+			}
+
+			.event-item {
+				margin-bottom: 30px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+				padding-bottom: 15px;
+			}
+
+			.event-item:last-child {
+				border-bottom: none;
+			}
+
+			.register-btn {
+				display: block;
+				width: 200px;
+				margin: 30px auto;
+				padding: 12px 20px;
+				background: linear-gradient(to right, #8e2de2, #4a00e0);
+				color: white;
+				text-align: center;
+				border-radius: 25px;
+				text-decoration: none;
+				font-weight: bold;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.register-btn:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+			}
+
+			footer {
+				background-image: url("https://www.creativefabrica.com/wp-content/uploads/2020/07/05/abstract-dark-blue-background-Graphics-4547092-1.jpg");
+				color: #cab719;
+				text-align: center;
+				padding: 20px;
+				margin-top: 20px;
+			}
+
+			footer ul {
+				list-style-type: none;
+				padding: 5px 0;
+			}
+
+			/* Responsive Design */
+			@media (max-width: 1024px) {
+				header {
+					padding: 0.75rem 1.5rem;
+				}
+
+				header img {
+					height: 50px;
+				}
+
+				nav ul {
+					gap: 1rem;
+				}
+			}
+
+			@media (max-width: 768px) {
+				.hamburger {
+					display: block;
+					order: 3;
+				}
+
+				nav ul {
+					display: none;
+					flex-direction: column;
+					width: 500px;
+					position: absolute;
+					top: 100%;
+					left: 0;
+					background: rgba(255, 255, 255, 0.95);
+					padding: 1rem;
+					box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+					z-index: 9999;
+				}
+
+				nav ul.active {
+					display: flex;
+				}
+
+				nav li {
+					padding: 0.75rem 0;
+				}
+
+				.container {
+					width: 95%;
+				}
+			}
+
+			@media (max-width: 480px) {
+				header {
+					padding: 0.5rem 1rem;
+				}
+
+				header img {
+					height: 40px;
+				}
+			}
+			.event-featured-image {
+				width: 300px;
+				height: auto;
+				border-radius: 8px;
+				box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+			}
+		</style>
+		<script>
+			function toggleMenu() {
+				const nav = document.querySelector("nav ul");
+				nav.classList.toggle("active");
+			}
+		</script>
+	</head>
+
+	<body>
+		<header>
+			<img class="one" src="{% static 'images/mitslogo.jpg' %}" alt="" />
+			<nav>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="{% url 'about' %}">About</a></li>
+					<li><a href="{% url 'events' %}">Events</a></li>
+					<li>
+						<a href="{% url 'registrations' %}">Registrations</a>
+					</li>
+					<li><a href="{% url 'info' %}">Info</a></li>
+				</ul>
+			</nav>
+			<span class="hamburger" onclick="toggleMenu()">☰</span>
+			<img class="two" src="{% static 'images/dslogo.jpg' %}" alt="" />
+		</header>
+
+		<div class="container">
+			<h1>{{ event.name|default:"Event Details" }}</h1>
+			<div class="details">
+				{% if event.img %}
+				<div class="event-image">
+					<img
+						src="{% static 'images/'|add:event.img %}"
+						alt="{{ event.name }}"
+						class="event-featured-image"
+					/>
+				</div>
+				{% endif %}
+
+				<div class="event-item">
+					<p>{{ event.description|safe }}</p>
+					{% if event.venue %}
+					<p><strong>Venue:</strong> {{ event.venue }}</p>
+					{% endif %} {% if event.time %}
+					<p><strong>Time:</strong> {{ event.time }}</p>
+					{% endif %} {% if event.date %}
+					<p><strong>Date:</strong> {{ event.date }}</p>
+					{% endif %} {% if event.registration_fee %}
+					<p>
+						<strong>Registration Fee:</strong> ₹{{
+						event.registration_fee }}
+					</p>
+					{% endif %}
+				</div>
+
+				<a
+					href="{% url 'register' %}?event={{ event.name }}"
+					class="register-btn"
+					>Register Now</a
+				>
+			</div>
+		</div>
+
+		<footer>
+			<h3>Contact Information</h3>
+			<p>For More Updates</p>
+			<ul>
+				<li>Jagadeesh Chowdary 9989436166</li>
+				<li>Lucky 9989436166</li>
+				<li>Asifa Shaik 8019153804</li>
+				<li>Hema Teja Reddy 9121451101</li>
+			</ul>
+		</footer>
+	</body>
+</html>
